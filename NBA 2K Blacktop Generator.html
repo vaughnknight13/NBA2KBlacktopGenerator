@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>NBA 2K Blacktop Team Generator</title>
+		<link rel="icon" type="image/x-icon" href="Images/basketball.ico">
+	</head>
+	<style>
+		@font-face {
+			font-family: interRegular;
+			src: url(Fonts/Inter-Regular.ttf);
+		}
+		@font-face {
+			font-family: interBold;
+			src: url(Fonts/Inter-Bold.ttf);
+		}
+		@font-face {
+			font-family: interExtraBold;
+			src: url(Fonts/Inter-ExtraBold.ttf);
+		}
+		@font-face {
+			font-family: interBlack;
+			src: url(Fonts/Inter-Black.ttf);
+		}
+		html {
+			scroll-behavior: smooth;
+		}
+		body {
+			background-image: url('Images/Pavement Background.webp');
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: 1366px 784px;
+			font-family: interRegular;
+			font-size: 25px;
+		}
+		button {
+			background-color: white;
+			color: black;
+			padding: 7px 20px;
+			font-family: interRegular;
+			font-size: 20px;
+			margin-bottom: 20px;
+			margin-top: -10px;
+			margin-right: 10px;
+			margin-left: 10px;
+			cursor: pointer;
+			display: inline-block;
+			border: 1px solid black;
+		}
+		label {
+			font-size:20px;
+		}
+		input[type="text"]::placeholder {
+			text-align: center;
+			font-size: 20px;
+		}
+		input[type="text"] {
+			text-align: center;
+			font-size: 20px;
+			width: 30px;
+		}
+		.secondHalf {
+			opacity: 0;
+		}
+		.firstHalf {
+			opacity: 0;
+		}
+		.error {
+			opacity: 0;
+		}
+		.generate:active {
+			background-color: grey;
+			color: white;
+			text-shadow: 1px 1px black;
+		}
+		.teams {
+			font-size: 17px;
+			opacity: 0;
+		}
+		.team-nameR1T1 {
+			font-size: 15px;
+		}
+		.overallR1T1 {
+			width: 45px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;
+			
+		}
+		.player-nameR1T1 {
+			font-size: 20px;
+			width: 275px;
+			
+		}
+		.overallColorR1T1 {
+			width: 5px;
+			background-color: hotpink;
+		}
+		.team-nameR1T2 {
+			font-size: 15px;
+		}
+		.overallR1T2 {
+			width: 45px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;
+		}
+		.player-nameR1T2 {
+			font-size: 20px;
+			width: 275px;
+		}
+		.overallColorR1T2 {
+			width: 5px;
+			background-color: hotpink;
+		}
+		.emptySpaceR1T1 {
+			width: 10px;
+		}
+		.emptySpaceR1T2 {
+			width: 10px;
+		}
+		.team-nameR2T1 {
+			font-size: 15px;
+		}
+		.overallR2T1 {
+			width: 45px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;
+		}
+		.player-nameR2T1 {
+			font-size: 20px;
+		}
+		.overallColorR2T1 {
+			width: 5px;
+		}
+		.team-nameR2T2 {
+			font-size: 15px;			
+		}
+		.overallR2T2 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;			
+		}
+		.player-nameR2T2 {
+			font-size: 20px;			
+		}
+		.overallColorR2T2 {
+			width: 5px;			
+		}
+		.emptySpaceR2T1 {
+			width: 10px;		
+		}
+		.emptySpaceR2T2 {
+			width: 10px;			
+		}
+		.team-nameR3T1 {
+			font-size: 15px;			
+		}
+		.overallR3T1 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;			
+		}
+		.player-nameR3T1 {
+			font-size: 20px;			
+		}
+		.overallColorR3T1 {
+			width: 5px;			
+		}
+		.team-nameR3T2 {
+			font-size: 15px;			
+		}
+		.overallR3T2 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;			
+		}
+		.player-nameR3T2 {
+			font-size: 20px;			
+		}
+		.overallColorR3T2 {
+			width: 5px;		
+		}
+		.emptySpaceR3T1 {
+			width: 10px;			
+		}
+		.emptySpaceR3T2 {
+			width: 10px;			
+		}
+		.team-nameR4T1 {
+			font-size: 15px;			
+		}
+		.overallR4T1 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;
+		}
+		.player-nameR4T1 {
+			font-size: 20px;			
+		}
+		.overallColorR4T1 {
+			width: 5px;			
+		}
+		.team-nameR4T2 {
+			font-size: 15px;			
+		}
+		.overallR4T2 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;		
+		}
+		.player-nameR4T2 {
+			font-size: 20px;			
+		}
+		.overallColorR4T2 {
+			width: 5px;			
+		}
+		.emptySpaceR4T1 {
+			width: 10px;			
+		}
+		.emptySpaceR4T2 {
+			width: 10px;			
+		}
+		.team-nameR5T1 {
+			font-size: 15px;			
+		}
+		.overallR5T1 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;		
+		}
+		.player-nameR5T1 {
+			font-size: 20px;			
+		}
+		.overallColorR5T1 {
+			width: 5px;			
+		}
+		.team-nameR5T2 {
+			font-size: 15px;			
+		}
+		.overallR5T2 {
+			width: 1px;
+			background-clip: padding-box;
+			border-radius: 5px;
+			background-color: rgba(255, 105, 180);
+			color: white;		
+		}
+		.player-nameR5T2 {
+			font-size: 20px;			
+		}
+		.overallColorR5T2 {
+			width: 5px;			
+		}
+		.emptySpaceR5T1 {
+			width: 10px;	
+		}
+		.emptySpaceR5T2 {
+			width: 10px;
+		}
+		.setOne {
+			opacity: 0;
+		}
+		.setOneTeams {
+			opacity: 0;
+		}
+		.setTwo {
+			opacity: 0;
+		}
+		.setTwoTeams {
+			opacity: 0;
+		}
+		.setThree {
+			opacity: 0;
+		}
+		.setThreeTeams {
+			opacity: 0;
+		}
+		.setFour {
+			opacity: 0;
+		}
+		.setFourTeams {
+			opacity: 0;
+		}
+		.setFive {
+			opacity: 0;
+		}
+		.setFiveTeams {
+			opacity: 0;
+		}
+		th {
+			font-size: 30px;
+		}
+		th p {
+			margin-bottom: 15px;
+		}
+		.teamTable {
+			padding-bottom: 60px;
+			margin-top: -10px;
+		}
+	</style>
+	<body>
+		<center>
+			<h1 style="font-family:interBlack; font-size:54px; letter-spacing: -3px; margin-bottom:60px;">
+				<center>
+					<img src="Images/NBA 2K Logo.png" width="195.4" height="40"> <img src="Images/Blacktop Text.png" width="206.2" height="40"> TEAM GENERATOR
+				</center>
+			</h1>
+			<div style="font-family:interRegular; margin-bottom:-20px;" id="firstHalf" class="firstHalf">
+				<p>Choose A Team Size</p>
+				<button id="button1" class="team">1v1</button>
+				<button id="button2" class="team">2v2</button>
+				<button id="button3" class="team">3v3</button>
+				<button id="button4" class="team">4v4</button>
+				<button id="button5" class="team">5v5</button>
+			</div>
+			<div style="font-family:interRegular" id="secondHalf" class="secondHalf" hidden>
+			<p style="margin-bottom:15px">Additional Settings</p>
+			<table>
+				<tr>
+					<td>
+						<input type="checkbox" id="OverallRange" name="OverallRange">
+						<label for="OverallRange">Overall Range:</label>
+						<input type="text" id="MinOvr" name="MinOvr" maxlength="2" placeholder="60" align="middle">
+						<label for="MaxOvr">-</label>
+						<input type="text" id="MaxOvr" name="MaxOvr" maxlength="2" placeholder="99" align="middle">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="Current" name="Current">
+						<label for="Current">Current</label><br>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="Classic" name="Classic">
+						<label for="Classic">Classic</label><br>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="checkbox" id="All-Time" name="All-Time">
+						<label for="All-Time">All-Time</label>
+					</td>
+				</tr>
+			</table><br>
+			<button style="font-size:30px" id="generator" class="generate">Randomize</button><br>
+			</div>
+			<div style="font-family:interRegular; margin-top:-15px; font-size:15px; background-color:#f7c4c4; color:#320909; width:450px" id="error" class="error">
+				<p>Not Enough Players Meet The Requirement To Make A Team</p>
+			</div>
+			<div style="font-family:interRegular; margin-bottom:50px" id="teamTable" class="teamTable" hidden>
+				<table style="border:none; width:800px; margin-top:50px">
+					<tr style="border:none;" class="teams" id="teams">
+						<th style="border:none; text-align:center;" colspan="5">
+							<p>Ringers</p>
+						</th>
+						<th style="border:none; text-align:center;" colspan="5">
+							<p>Ballerz</p>
+						</th>
+					</tr>
+					<tr style="border:none;" id="setOne" class="setOne">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR1T1" id="overallColorR1T1"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR1T1" id="emptySpaceR1T1"></td>
+						<td style="border:none;" class="player-nameR1T1" id="player-nameR1T1">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR1T1" id="overallR1T1">99</td>
+						<td style="border:none; text-align:center; width: 50px" rowspan="2" class="emptySpaceR1T1" id="emptySpaceR1T1"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR1T2" id="overallColorR1T2"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR1T2" id="emptySpaceR1T2"></td>
+						<td style="border:none;" class="player-nameR1T2" id="player-nameR1T2">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR1T2" id="overallR1T2">99</td>
+						<td style="border:none; text-align:center; width: 50px" rowspan="2" class="emptySpaceR1T2" id="emptySpaceR1T2"></td>
+					</tr>
+					<tr id="setOneTeams" class="setOneTeams">
+						<td style="border:none;" class="team-nameR1T1" id="team-nameR1T1">All-Time Portland Trail Blazers</td>
+						<td style="border:none;" class="team-nameR1T2" id="team-nameR1T2">All-Time Portland Trail Blazers</td>
+					</tr>
+					<tr>
+						<td style="height: 15px;"></td>
+					</tr>
+					<tr style="border:none;" id="setTwo" class="setTwo">
+						<div class="R2T1" id="R2T1">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR2T1" id="overallColorR2T1"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR2T1" id="emptySpaceR2T1"></td>
+						<td style="border:none;" class="player-nameR2T1" id="player-nameR2T1">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR2T1" id="overallR2T1">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR2T1" id="emptySpaceR2T1"></td>
+						</div>
+						<div class="R2T2" id="R2T2">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR2T2" id="overallColorR2T2"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR2T2" id="emptySpaceR2T2"></td>
+						<td style="border:none;" class="player-nameR2T2" id="player-nameR2T2">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR2T2" id="overallR2T2">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR2T2" id="emptySpaceR2T2"></td>
+						</div>
+					</tr>
+					<tr id="setTwoTeams" class="setTwoTeams">
+						<div class="R2T1" id="R2T1">
+						<td style="border:none;" class="team-nameR2T1" id="team-nameR2T1">Team Name</td>
+						</div>
+						<div class="R2T2" id="R2T2">
+						<td style="border:none;" class="team-nameR2T2" id="team-nameR2T2">Team Name</td>
+						</div>
+					</tr>
+					<tr>
+						<td style="height: 15px;"></td>
+					</tr>
+					<tr style="border:none;" id="setThree" class="setThree">
+						<div class="R3T1" id="R3T1">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR3T1" id="overallColorR3T1"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR3T1" id="emptySpaceR3T1"></td>
+						<td style="border:none;" class="player-nameR3T1" id="player-nameR3T1">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR3T1" id="overallR3T1">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR3T1" id="emptySpaceR3T1"></td>
+						</div>
+						<div class="R3T2" id="R3T2">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR3T2" id="overallColorR3T2"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR3T2" id="emptySpaceR3T2"></td>
+						<td style="border:none;" class="player-nameR3T2" id="player-nameR3T2">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR3T2" id="overallR3T2">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR3T2" id="emptySpaceR3T2"></td>
+						</div>
+					</tr>
+					<tr id="setThreeTeams" class="setThreeTeams">
+						<div class="R3T1" id="R1T1">
+						<td style="border:none;" class="team-nameR3T1" id="team-nameR3T1">Team Name</td>
+						</div>
+						<div class="R3T2" id="R3T2">
+						<td style="border:none;" class="team-nameR3T2" id="team-nameR3T2">Team Name</td>
+						</div>
+					</tr>
+					<tr>
+						<td style="height: 15px;"></td>
+					</tr>
+					<tr style="border:none;" id="setFour" class="setFour">
+						<div class="R4T1" id="R4T1">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR4T1" id="overallColorR4T1"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR4T1" id="emptySpaceR4T1"></td>
+						<td style="border:none;" class="player-nameR4T1" id="player-nameR4T1">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR4T1" id="overallR4T1">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR4T1" id="emptySpaceR4T1"></td>
+						</div>
+						<div class="R4T2" id="R4T2">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR4T2" id="overallColorR4T2"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR4T2" id="emptySpaceR4T2"></td>
+						<td style="border:none;" class="player-nameR4T2" id="player-nameR4T2">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR4T2" id="overallR4T2">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR4T2" id="emptySpaceR4T2"></td>
+						</div>
+					</tr>
+					<tr id="setFourTeams" class="setFourTeams">
+						<div class="R4T1" id="R4T1">
+						<td style="border:none;" class="team-nameR4T1" id="team-nameR4T1">Team Name</td>
+						</div>
+						<div class="R4T2" id="R4T2">
+						<td style="border:none;" class="team-nameR4T2" id="team-nameR4T2">Team Name</td>
+						</div>
+					</tr>
+					<tr>
+						<td style="height: 15px;"></td>
+					</tr>
+					<tr style="border:none;" id="setFive" class="setFive">
+						<div class="R5T1" id="R5T1">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR5T1" id="overallColorR5T1"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR5T1" id="emptySpaceR5T1"></td>
+						<td style="border:none;" class="player-nameR5T1" id="player-nameR5T1">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR5T1" id="overallR5T1">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR5T1" id="emptySpaceR5T1"></td>
+						</div>
+						<div class="R5T2" id="R5T2">
+						<td style="border:none; text-align:center;" rowspan="2" class="overallColorR5T2" id="overallColorR5T2"></td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR5T2" id="emptySpaceR5T2"></td>
+						<td style="border:none;" class="player-nameR5T2" id="player-nameR5T2">Kentavious Caldwell-Pope</td>
+						<td style="text-align:center;" rowspan="2" class="overallR5T2" id="overallR5T2">99</td>
+						<td style="border:none; text-align:center;" rowspan="2" class="emptySpaceR5T2" id="emptySpaceR5T2"></td>
+						</div>
+					</tr>
+					<tr id="setFiveTeams" class="setFiveTeams">
+						<div class="R5T1" id="R5T1">
+						<td style="border:none;" class="team-nameR5T1" id="team-nameR5T1">Team Name</td>
+						</div>
+						<div class="R5T2" id="R5T2">
+						<td style="border:none;" class="team-nameR5T2" id="team-nameR5T2">Team Name</td>
+						</div>
+					</tr>
+				</table>
+			</div>
+			<script src="Generator Code.js"></script>
+		</center>
+	</body>
+</html>
